@@ -1,4 +1,4 @@
-const { Product } = require('../../database/models')
+const { Product, Category } = require('../../database/models')
 
 const producsController = {
 	latest: async (req, res) => {
@@ -36,6 +36,23 @@ const producsController = {
 		})
 		const data = [...products]
 		const response = { meta, data }
+
+		res.send(response)
+	},
+	categories: async (req, res) => {
+		const meta = {
+			status: 200,
+			url: req.originalUrl,
+		}
+		const category = await Category.findOne({
+			where: {
+				name: req.params.category,
+			},
+			include: ['products'],
+		})
+		const { products } = category
+
+		const response = { meta, data: products }
 
 		res.send(response)
 	},

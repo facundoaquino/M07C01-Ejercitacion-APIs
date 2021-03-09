@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('../partials/head', {title: 'Categorias', image: '', js: 'categories'}) %>
+<%- include('../partials/head', {title: 'Categorias', image: ''}) %>
 
 <body>
    <!-- Header -->
@@ -23,7 +23,7 @@
 				
                   <div class="col-12 col-sm-6 col-lg-4">
                      <section class="product-box">
-                        <a href="/products/detail/<%= product.id %> ">
+                        <a href="/products/detail/<%= product.id %>">
                            <figure class="product-box_image">
                               <img src="/images/products/<%= product.image %>" alt="<%= product.name %>">
                            </figure>
@@ -52,7 +52,7 @@
 
                   <% categories.forEach(category => { %>
                      <% if (category.products.length > 0) { %>
-                        <a href="/products/categories/<%= category.name %>">
+                        <a    data-category=<%= category.name %>>
                            <h2 class="product-detail-title categories" style="font-size: 15px; cursor: pointer;" id="<%= category.name %>">
                               <%= category.name %> 
                            </h2>
@@ -79,6 +79,9 @@
    <!-- footer -->
    <%- include('../partials/footer') %>
    <!-- /footer -->
+
+	<script type="module" src="/js/categories.js"></script>
+
 </body>
 
 </html>
