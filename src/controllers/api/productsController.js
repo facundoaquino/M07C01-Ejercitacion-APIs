@@ -13,8 +13,8 @@ const producsController = {
 				order: [['createdAt', 'desc']],
 				limit: PRODUCTS_LIMIT,
 			})
-			const data = [...products]
-			const response = { meta, data }
+
+			const response = { meta, data: products }
 
 			res.send(response)
 		} catch (err) {
@@ -52,6 +52,16 @@ const producsController = {
 		})
 		const { products } = category
 
+		const response = { meta, data: products }
+
+		res.send(response)
+	},
+	all: async (req, res) => {
+		const meta = {
+			status: 200,
+			url: req.originalUrl,
+		}
+		const products = await Product.findAll()
 		const response = { meta, data: products }
 
 		res.send(response)
